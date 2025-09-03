@@ -134,6 +134,16 @@
             color: white;
         }
 
+        .btn-whatsapp {
+            background-color: #25D366;
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.25);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
@@ -415,6 +425,76 @@
             font-weight: bold;
         }
 
+        /* Purchase Panel */
+        .purchase-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 600px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .purchase-panel h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+
+        .purchase-details {
+            margin-bottom: 25px;
+        }
+
+        .purchase-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .purchase-row.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-bottom: none;
+            border-top: 2px solid var(--primary);
+            margin-top: 10px;
+        }
+
+        .purchase-row.commission {
+            color: var(--accent);
+        }
+
+        .pix-info {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pix-key {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            word-break: break-all;
+            margin: 10px 0;
+        }
+
+        .copy-pix {
+            margin-top: 15px;
+            cursor: pointer;
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-pix:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             background-color: var(--darker);
@@ -599,6 +679,9 @@
                     <a href="#" class="btn btn-secondary">
                         <i class="fas fa-user-plus"></i>Cadastrar
                     </a>
+                    <a href="https://wa.me/5562992628445" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i>WhatsApp
+                    </a>
                 </div>
             </nav>
         </div>
@@ -616,6 +699,9 @@
                     </a>
                     <a href="#" class="btn btn-outline">
                         <i class="fas fa-play-circle"></i>Ver vídeo
+                    </a>
+                    <a href="https://wa.me/5562992628445" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i>Fale Conosco
                     </a>
                 </div>
             </div>
@@ -652,6 +738,48 @@
                     <h3>Dashboard avançado</h3>
                     <p>Controle total sobre seus cursos, alunos e métricas de desempenho com analytics em tempo real.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purchase Panel -->
+    <section class="form-section">
+        <div class="container">
+            <h2 class="section-title">Painel de Compra</h2>
+            <p class="section-subtitle">Finalize sua compra com transparência: veja o valor do curso, nossa comissão e o valor final</p>
+
+            <div class="purchase-panel">
+                <h3>Resumo da Compra</h3>
+                
+                <div class="purchase-details">
+                    <div class="purchase-row">
+                        <span>Valor do Curso:</span>
+                        <span id="courseValue">R$ 297,00</span>
+                    </div>
+                    
+                    <div class="purchase-row commission">
+                        <span>Comissão da Plataforma (10%):</span>
+                        <span id="commissionValue">- R$ 29,70</span>
+                    </div>
+                    
+                    <div class="purchase-row total">
+                        <span>Total a Pagar:</span>
+                        <span id="totalValue">R$ 267,30</span>
+                    </div>
+                </div>
+
+                <div class="pix-info">
+                    <h4>Pagamento via PIX</h4>
+                    <p>Utilize a chave PIX abaixo para realizar o pagamento:</p>
+                    <div class="pix-key" id="pixKey">10422308110</div>
+                    <div class="copy-pix" id="copyPix">
+                        <i class="fas fa-copy"></i> Copiar chave PIX
+                    </div>
+                </div>
+
+                <button class="btn" style="width: 100%;" id="confirmPayment">
+                    <i class="fas fa-check-circle"></i> Confirmar Pagamento
+                </button>
             </div>
         </div>
     </section>
@@ -842,6 +970,7 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5562992628445" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -872,6 +1001,7 @@
                     <ul>
                         <li><i class="fas fa-envelope"></i> contato@devrise.com</li>
                         <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                        <li><i class="fab fa-whatsapp"></i> (62) 99926-28445</li>
                         <li><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</li>
                     </ul>
                 </div>
@@ -896,6 +1026,27 @@
             </div>
             <button class="btn" style="width: 100%;" id="modalOkButton">
                 <i class="fas fa-thumbs-up"></i> Entendi
+            </button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 60px; color: var(--success);">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 style="color: var(--success); margin: 20px 0;">Pagamento Confirmado!</h2>
+                <p>Obrigado por sua compra. Enviamos um e-mail com os detalhes de acesso ao curso.</p>
+                <div class="pix-info" style="margin: 20px 0;">
+                    <p>Pagamento realizado para a chave PIX:</p>
+                    <div class="pix-key">10422308110</div>
+                </div>
+            </div>
+            <button class="btn" style="width: 100%;" id="paymentOkButton">
+                <i class="fas fa-thumbs-up"></i> Ok
             </button>
         </div>
     </div>
@@ -992,6 +1143,53 @@
                 };
                 typeWriter();
             }
+
+            // Cálculo de comissão e valores
+            function calculateCommission() {
+                const courseValue = 297.00; // Valor fixo do curso
+                const commissionRate = 0.10; // 10% de comissão
+                const commissionValue = courseValue * commissionRate;
+                const totalValue = courseValue - commissionValue;
+                
+                document.getElementById('courseValue').textContent = `R$ ${courseValue.toFixed(2)}`;
+                document.getElementById('commissionValue').textContent = `- R$ ${commissionValue.toFixed(2)}`;
+                document.getElementById('totalValue').textContent = `R$ ${totalValue.toFixed(2)}`;
+            }
+            
+            // Inicializar cálculo da comissão
+            calculateCommission();
+            
+            // Copiar chave PIX
+            document.getElementById('copyPix').addEventListener('click', function() {
+                const pixKey = document.getElementById('pixKey').textContent;
+                navigator.clipboard.writeText(pixKey).then(() => {
+                    alert('Chave PIX copiada para a área de transferência!');
+                });
+            });
+            
+            // Confirmar pagamento
+            const confirmPaymentBtn = document.getElementById('confirmPayment');
+            const paymentModal = document.getElementById('paymentModal');
+            const closePaymentModal = document.getElementById('closePaymentModal');
+            const paymentOkButton = document.getElementById('paymentOkButton');
+            
+            confirmPaymentBtn.addEventListener('click', function() {
+                paymentModal.style.display = 'flex';
+            });
+            
+            closePaymentModal.addEventListener('click', function() {
+                paymentModal.style.display = 'none';
+            });
+            
+            paymentOkButton.addEventListener('click', function() {
+                paymentModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === paymentModal) {
+                    paymentModal.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
