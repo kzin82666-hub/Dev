@@ -22,6 +22,8 @@
     .btn:hover { background: #2980b9; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
     .btn-instructor { background: #2ecc71; }
     .btn-instructor:hover { background: #27ae60; }
+    .btn-marketplace { background: #e67e22; }
+    .btn-marketplace:hover { background: #d35400; }
 
     /* Barra de Busca */
     .search-bar { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin: 20px auto; max-width: 1200px; }
@@ -94,9 +96,10 @@
       <nav>
         <ul>
           <li><a href="#cursos">Cursos</a></li>
+          <li><a href="https://kzin82666-hub.github.io/Market/" target="_blank">Marketplace</a></li>
           <li><a href="#recursos">Recursos</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li><a href="https://kzin82666-hub.github.io/H/" class="btn btn-instructor">Área do Instrutor</a></li>
+          <li><a href="#" class="btn btn-instructor" id="dashboard-toggle">Área do Instrutor</a></li>
         </ul>
       </nav>
     </div>
@@ -108,6 +111,7 @@
       <h2>Aprenda. Cresça. Conquiste.</h2>
       <p>Plataforma de cursos online com pagamento rápido via PIX.</p>
       <a href="#cursos" class="btn">Explorar Cursos</a>
+      <a href="https://kzin82666-hub.github.io/Market/" class="btn btn-marketplace" style="margin-left: 15px;">Explorar Marketplace</a>
     </div>
   </section>
 
@@ -165,6 +169,12 @@
           <h3>Comunidade Ativa</h3>
           <p>Participe de grupos e tire dúvidas com especialistas da área.</p>
         </div>
+        <div class="feature">
+          <i class="fa-solid fa-store fa-3x"></i>
+          <h3>Marketplace Integrado</h3>
+          <p>Compre e venda produtos digitais em nossa plataforma.</p>
+          <a href="https://kzin82666-hub.github.io/Market/" class="btn btn-marketplace" style="margin-top: 15px;">Acessar Marketplace</a>
+        </div>
       </div>
     </div>
   </section>
@@ -215,6 +225,7 @@
       const closeModal = document.getElementById('close-modal');
       const modalCourseInfo = document.getElementById('modal-course-info');
       const confirmPurchase = document.getElementById('confirm-purchase');
+      const dashboardToggle = document.getElementById('dashboard-toggle');
       
       let currentFilter = 'all';
       let currentSearch = '';
@@ -261,6 +272,18 @@
             saveCourses();
             renderCourses();
           }
+        }
+      });
+      
+      // Botão área do instrutor
+      dashboardToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Simulação simples de login
+        const password = prompt('Digite a senha de instrutor:');
+        if (password === 'devrise123') {
+          window.location.href = 'https://kzin82666-hub.github.io/H/';
+        } else {
+          alert('Senha incorreta. Acesso não autorizado.');
         }
       });
       
@@ -317,14 +340,21 @@
           database: '<i class="fas fa-database"></i>',
           design: '<i class="fas fa-paint-brush"></i>',
           marketing: '<i class="fas fa-chart-line"></i>',
-          business: '<i class="fas fa-briefcase"></i>'
+          business: '<i class="fas fa-briefcase"></i>',
+          default: '<i class="fas fa-book"></i>'
         };
         
         const courseCard = document.createElement('div');
         courseCard.className = 'course-card';
+        
+        // Verificar se é uma URL de imagem válida
+        const isImageUrl = course.image && course.image.startsWith('http');
+        
         courseCard.innerHTML = `
-          <div class="course-image">
-            ${icons[course.image] || '<i class="fas fa-book"></i>'}
+          <div class="course-image" ${isImageUrl ? `style="background-image: url('${course.image}')"` : ''}>
+            <div class="course-icon">
+              ${isImageUrl ? '' : (icons[course.image] || icons['default'])}
+            </div>
           </div>
           <div class="course-content">
             <h3 class="course-title">${course.title}</h3>
